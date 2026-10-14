@@ -34,9 +34,8 @@ public class DoctorDataAccessor {
     }
     
     public Doctor getDoctor(int id) {
-        try {
-            String query = "select * from doctor where ID_DOCTOR = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
+        String query = "select * from doctor where ID_DOCTOR = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
